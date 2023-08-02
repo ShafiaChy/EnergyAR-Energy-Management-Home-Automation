@@ -1,0 +1,7 @@
+freeze off
+freeze on
+none
+light on
+light off
+fan on
+fan off
