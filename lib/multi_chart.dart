@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'consts.dart';
 
+// dart charts added
 Widget multiChart(jsonData1, jsonData2, jsonData3, int mode) {
   LabelLayoutStrategy? xContainerLabelLayoutStrategy;
   ChartData chartData;
@@ -17,14 +18,16 @@ Widget multiChart(jsonData1, jsonData2, jsonData3, int mode) {
 
   ChartOptions chartOptions = const ChartOptions();
   chartOptions = ChartOptions(
-    iterativeLayoutOptions: const IterativeLayoutOptions(labelTiltRadians: -math.pi / 2, multiplyLabelSkip: 5),
+    iterativeLayoutOptions: const IterativeLayoutOptions(
+        labelTiltRadians: -math.pi / 2, multiplyLabelSkip: 5),
     dataContainerOptions: DataContainerOptions(
       gridLinesColor: Colors.grey.shade200,
       startYAxisAtDataMinRequested: false,
     ),
   );
 
-  void addToList(List<double> runtime, List<String> xAxis, List<int> temp, String key, String label) {
+  void addToList(List<double> runtime, List<String> xAxis, List<int> temp,
+      String key, String label) {
     var raw = key.split("-");
     if (temp.isNotEmpty) {
       int sum = 0;
@@ -49,7 +52,8 @@ Widget multiChart(jsonData1, jsonData2, jsonData3, int mode) {
     }
   }
 
-  void makeChart(Map<String, dynamic> map, List<double> runtime, List<String> xAxis, String label) {
+  void makeChart(Map<String, dynamic> map, List<double> runtime,
+      List<String> xAxis, String label) {
     if (mode == 1) {
       map.forEach((key, value) {
         xAxis.add(key);
@@ -96,22 +100,22 @@ Widget multiChart(jsonData1, jsonData2, jsonData3, int mode) {
 
   if (jsonData1 != null && jsonData1 != "null") {
     Map<String, dynamic> map1 = jsonData1;
-    map1 =
-        Map.fromEntries(map1.entries.toList()..sort((e1, e2) => e1.key.split("-")[1].compareTo(e2.key.split("-")[1])));
+    map1 = Map.fromEntries(map1.entries.toList()
+      ..sort((e1, e2) => e1.key.split("-")[1].compareTo(e2.key.split("-")[1])));
     makeChart(map1, runtime1, xAxis1, "Light");
   }
 
   if (jsonData2 != null && jsonData2 != "null") {
     Map<String, dynamic> map2 = jsonData2;
-    map2 =
-        Map.fromEntries(map2.entries.toList()..sort((e1, e2) => e1.key.split("-")[1].compareTo(e2.key.split("-")[1])));
+    map2 = Map.fromEntries(map2.entries.toList()
+      ..sort((e1, e2) => e1.key.split("-")[1].compareTo(e2.key.split("-")[1])));
     makeChart(map2, runtime2, xAxis2, "Fan");
   }
 
   if (jsonData3 != null && jsonData3 != "null") {
     Map<String, dynamic> map3 = jsonData3;
-    map3 =
-        Map.fromEntries(map3.entries.toList()..sort((e1, e2) => e1.key.split("-")[1].compareTo(e2.key.split("-")[1])));
+    map3 = Map.fromEntries(map3.entries.toList()
+      ..sort((e1, e2) => e1.key.split("-")[1].compareTo(e2.key.split("-")[1])));
     makeChart(map3, runtime3, xAxis3, "Fridge");
   }
 
